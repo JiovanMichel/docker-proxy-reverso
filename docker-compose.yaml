@@ -22,7 +22,7 @@ services:
             context: ./app
             dockerfile: Dockerfile
         container_name: node-proxy-reverse
-        entrypoint: dockerize -wait tcp://mysql-proxy-reverse:3306 -timeout 60s node index.js
+        entrypoint: dockerize -wait tcp://database:3306 -timeout 60s node index.js
         networks: 
             - network-proxy-reverse
         depends_on: 
