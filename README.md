@@ -1,5 +1,5 @@
 # docker-proxy-reverso
-Aplicação em Node.js + Mysql com proxy reverso Nginx. 
+Aplicação em Node.js + Mysql com Nginx para proxy reverso. 
 
 Git Pull
 
