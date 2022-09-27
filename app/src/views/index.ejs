@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Full Cycle Rocks!</title>
+    </head>
+    <body>
+        <h1>Full Cycle Rocks!</h1>
+        <p>- Lista de nomes cadastrada no banco de dados.</p>
+        <% if (people.length) { %>
+            <ul>
+                <% people.forEach(function(person){ %>
+                    <li><%= person.name %></li>
+                <% }); %>
+            </ul>
+            
+        <% } else { %>
+            <p>Nenhum nome cadastrado!</p>
+        <% } %>
+    </body>
+</html>

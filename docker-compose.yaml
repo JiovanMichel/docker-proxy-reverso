@@ -1,0 +1,46 @@
+version: '3'
+
+services: 
+    database: 
+        image: mysql:latest
+        command:  
+            --innodb-use-native-aio=0
+            --init-file /docker-entrypoint-initdb.d/init.sql
+        container_name: mysql-proxy-reverse
+        restart: always
+        environment: 
+            - MYSQL_ROOT_PASSWORD=root
+        networks: 
+            - network-proxy-reverse
+        volumes: 
+            - ./database/mysql:/var/lib/mysql
+            - ./database/scripts:/docker-entrypoint-initdb.d
+    
+    application:
+        image: jiovanmichel/node-proxy-reverse
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        container_name: node-proxy-reverse
+        entrypoint: dockerize -wait tcp://mysql-proxy-reverse:3306 -timeout 60s node index.js
+        networks: 
+            - network-proxy-reverse
+        depends_on: 
+            - database
+
+    proxy: 
+        image: jiovanmichel/nginx-proxy-reverse
+        build:
+            context: ./proxy
+            dockerfile: Dockerfile
+        container_name: nginx-proxy-reverse
+        ports: 
+            - 8080:80
+        networks: 
+            - network-proxy-reverse
+        depends_on: 
+            - application
+
+networks: 
+    network-proxy-reverse:
+        driver: bridge  

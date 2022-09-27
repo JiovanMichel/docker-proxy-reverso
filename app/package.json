@@ -1,0 +1,11 @@
+{
+  "name": "fullcycle-proxy-reverso-docker",
+  "version": "1.0.0",
+  "description": "Desafio proxy reverso Full Cycle 3.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jiovan Michel",
+  "license": "ISC"
+}
