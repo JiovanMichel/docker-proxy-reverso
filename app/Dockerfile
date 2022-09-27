@@ -4,11 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install express
-RUN npm install mysql2
-RUN npm install ejs
+RUN npm install
 
-# Alpine Images
 RUN apk add --no-cache openssl
 
 ENV DOCKERIZE_VERSION v0.6.1
@@ -17,3 +14,5 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 EXPOSE 8000
+
+
